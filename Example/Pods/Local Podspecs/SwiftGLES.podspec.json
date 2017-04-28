@@ -1,0 +1,22 @@
+{
+  "name": "SwiftGLES",
+  "version": "0.1.0",
+  "summary": "A short description of SwiftGLES.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/aelam/SwiftGLES",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "aelam": "wanglun02@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/aelam/SwiftGLES.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SwiftGLES/Classes/**/*"
+}

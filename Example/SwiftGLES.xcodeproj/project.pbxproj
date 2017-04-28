@@ -14,6 +14,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		947FAACF1EB318B000B068A8 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947FAACE1EB318B000B068A8 /* GLKit.framework */; };
 		9E3B2BFEFA052D264E7CADA7 /* Pods_SwiftGLES_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9844BEE1915CD3148B2BF75 /* Pods_SwiftGLES_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,9 +29,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		25E61AD2D5B781166532BEFE /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		25E61AD2D5B781166532BEFE /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		26D626117A89E6C6A9DC9C3E /* Pods-SwiftGLES_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGLES_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGLES_Tests/Pods-SwiftGLES_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		53B441799039CA5ED3B5B141 /* SwiftGLES.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = SwiftGLES.podspec; path = ../SwiftGLES.podspec; sourceTree = "<group>"; };
+		53B441799039CA5ED3B5B141 /* SwiftGLES.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SwiftGLES.podspec; path = ../SwiftGLES.podspec; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* SwiftGLES_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftGLES_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,8 +44,9 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		6B57F9A4654FD80FC7D3A4D3 /* Pods-SwiftGLES_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGLES_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGLES_Example/Pods-SwiftGLES_Example.release.xcconfig"; sourceTree = "<group>"; };
 		739AC54FB396A8B65E4F8BAA /* Pods_SwiftGLES_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftGLES_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		947FAACE1EB318B000B068A8 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		9959AA3920A9816ED9CD7B13 /* Pods-SwiftGLES_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGLES_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGLES_Tests/Pods-SwiftGLES_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		AEEF1FB30C067CC72D8667AE /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		AEEF1FB30C067CC72D8667AE /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C1067A9B545E45E458B2BB1F /* Pods-SwiftGLES_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGLES_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGLES_Example/Pods-SwiftGLES_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		F9844BEE1915CD3148B2BF75 /* Pods_SwiftGLES_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftGLES_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -54,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				947FAACF1EB318B000B068A8 /* GLKit.framework in Frameworks */,
 				02B8A0F935923C8AD2B48B42 /* Pods_SwiftGLES_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,6 +145,7 @@
 		79566948BE8801B5984BB89D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				947FAACE1EB318B000B068A8 /* GLKit.framework */,
 				739AC54FB396A8B65E4F8BAA /* Pods_SwiftGLES_Example.framework */,
 				F9844BEE1915CD3148B2BF75 /* Pods_SwiftGLES_Tests.framework */,
 			);

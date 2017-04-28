@@ -1,0 +1,6 @@
+framework module SwiftGLES {
+  umbrella header "SwiftGLES-umbrella.h"
+
+  export *
+  module * { export * }
+}
