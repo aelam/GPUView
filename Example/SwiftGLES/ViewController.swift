@@ -29,7 +29,7 @@ class ViewController: UIViewController, GLKViewDelegate {
 
 //        glGetIntegerv(GL_MAX_TEXTURE_UNITS, &iUnits);”
         let context = EAGLContext.init(api: .openGLES3)
-        let aGLKView = GLKView(frame: CGRect(x: 0, y: 0, width: 375, height: 400), context: context!)
+        let aGLKView = GPUView(frame: CGRect(x: 0, y: 0, width: 375, height: 400), context: context!)
         aGLKView.delegate = self
         aGLKView.drawableDepthFormat = .format16
         aGLKView.enableSetNeedsDisplay = true
@@ -58,20 +58,25 @@ class ViewController: UIViewController, GLKViewDelegate {
 
         glEnableVertexAttribArray(GLuint(GLKVertexAttrib.position.rawValue));
 
-        // t1
-        mEffect.texture2d0.enabled = GLboolean(GL_TRUE);
-        mEffect.useConstantColor = GLboolean(GL_FALSE)
-//        mEffect.constantColor = GLKVector4(v: (1.0, 0.0 ,0.0, 1.0))
-        self.mEffect.texture2d0.name = (t1?.name)!
+//        // t1
+//        mEffect.texture2d0.enabled = GLboolean(GL_TRUE);
+        mEffect.useConstantColor = GLboolean(GL_TRUE)
+        mEffect.constantColor = GLKVector4(v: (1.0, 0.0 ,0.0, 1.0))
+//        self.mEffect.texture2d0.name = (t1?.name)!
         mEffect.prepareToDraw()
-        glDrawArrays(GLenum(GL_TRIANGLES), 0, 6);
-
-        // t2
-        mEffect.useConstantColor = GLboolean(GL_FALSE)
-//        mEffect.constantColor = GLKVector4(v: (1.0, 0.0 ,1.0, 1.0))
-        self.mEffect.texture2d0.name = (t2?.name)!
+        glLineWidth(3)
+        glDrawArrays(GLenum(GL_LINES), 0, 6);
+        
+        mEffect.constantColor = GLKVector4(v: (1.0, 1.0 ,0.0, 1.0))
         mEffect.prepareToDraw()
-        glDrawArrays(GLenum(GL_TRIANGLES), 0, 6);
+        glDrawArrays(GLenum(GL_TRIANGLES), 0, 3);
+//
+//        // t2
+//        mEffect.useConstantColor = GLboolean(GL_FALSE)
+////        mEffect.constantColor = GLKVector4(v: (1.0, 0.0 ,1.0, 1.0))
+//        self.mEffect.texture2d0.name = (t2?.name)!
+//        mEffect.prepareToDraw()
+//        glDrawArrays(GLenum(GL_TRIANGLES), 0, 6);
 
         glDisableVertexAttribArray(GLuint(GLKVertexAttrib.position.rawValue));
 

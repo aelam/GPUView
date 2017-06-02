@@ -2,6 +2,7 @@ use_frameworks!
 
 target 'SwiftGLES_Example' do
   pod 'SwiftGLES', :path => '../'
+  pod 'Charts', :git => 'http://ph.benemind.com/diffusion/CHART/chart.git'
 
   target 'SwiftGLES_Tests' do
     inherit! :search_paths

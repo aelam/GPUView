@@ -15,6 +15,8 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		947FAACF1EB318B000B068A8 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947FAACE1EB318B000B068A8 /* GLKit.framework */; };
+		9490D4561EE16412005E6AB2 /* candle.json in Resources */ = {isa = PBXBuildFile; fileRef = 9490D4551EE16412005E6AB2 /* candle.json */; };
+		9490D45A1EE16420005E6AB2 /* SKCandleDataBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490D4591EE16420005E6AB2 /* SKCandleDataBuilder.m */; };
 		949A6F9C1EB82ADA00779220 /* beetle.png in Resources */ = {isa = PBXBuildFile; fileRef = 949A6F9A1EB82ADA00779220 /* beetle.png */; };
 		949A6F9D1EB82ADA00779220 /* for_test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 949A6F9B1EB82ADA00779220 /* for_test.jpg */; };
 		9E3B2BFEFA052D264E7CADA7 /* Pods_SwiftGLES_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9844BEE1915CD3148B2BF75 /* Pods_SwiftGLES_Tests.framework */; };
@@ -47,6 +49,10 @@
 		6B57F9A4654FD80FC7D3A4D3 /* Pods-SwiftGLES_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGLES_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGLES_Example/Pods-SwiftGLES_Example.release.xcconfig"; sourceTree = "<group>"; };
 		739AC54FB396A8B65E4F8BAA /* Pods_SwiftGLES_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftGLES_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		947FAACE1EB318B000B068A8 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		9490D4551EE16412005E6AB2 /* candle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = candle.json; sourceTree = "<group>"; };
+		9490D4571EE1641F005E6AB2 /* SwiftGLES_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftGLES_Example-Bridging-Header.h"; sourceTree = "<group>"; };
+		9490D4581EE16420005E6AB2 /* SKCandleDataBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCandleDataBuilder.h; sourceTree = "<group>"; };
+		9490D4591EE16420005E6AB2 /* SKCandleDataBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCandleDataBuilder.m; sourceTree = "<group>"; };
 		949A6F9A1EB82ADA00779220 /* beetle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beetle.png; sourceTree = "<group>"; };
 		949A6F9B1EB82ADA00779220 /* for_test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = for_test.jpg; sourceTree = "<group>"; };
 		9959AA3920A9816ED9CD7B13 /* Pods-SwiftGLES_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGLES_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGLES_Tests/Pods-SwiftGLES_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -102,12 +108,16 @@
 			children = (
 				949A6F9A1EB82ADA00779220 /* beetle.png */,
 				949A6F9B1EB82ADA00779220 /* for_test.jpg */,
+				9490D4551EE16412005E6AB2 /* candle.json */,
+				9490D4581EE16420005E6AB2 /* SKCandleDataBuilder.h */,
+				9490D4591EE16420005E6AB2 /* SKCandleDataBuilder.m */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				9490D4571EE1641F005E6AB2 /* SwiftGLES_Example-Bridging-Header.h */,
 			);
 			name = "Example for SwiftGLES";
 			path = SwiftGLES;
@@ -225,7 +235,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0830;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -260,6 +270,7 @@
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				949A6F9D1EB82ADA00779220 /* for_test.jpg in Resources */,
+				9490D4561EE16412005E6AB2 /* candle.json in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				949A6F9C1EB82ADA00779220 /* beetle.png in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -375,6 +386,7 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				9490D45A1EE16420005E6AB2 /* SKCandleDataBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,11 +520,14 @@
 			baseConfigurationReference = C1067A9B545E45E458B2BB1F /* Pods-SwiftGLES_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SwiftGLES/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftGLES/SwiftGLES_Example-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -522,11 +537,13 @@
 			baseConfigurationReference = 6B57F9A4654FD80FC7D3A4D3 /* Pods-SwiftGLES_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SwiftGLES/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftGLES/SwiftGLES_Example-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
