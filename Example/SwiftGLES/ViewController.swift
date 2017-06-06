@@ -18,10 +18,16 @@ class ViewController: UIViewController, GLKViewDelegate {
     
     private var mEffect = GLKBaseEffect()
     private var vertexBuffer: GLuint = 0
+
+    private var pointShaderProgram: GLuint = 0
     
+    private var lineVertexBuffer: GLuint = 0
+
     private var t1: GLKTextureInfo?
     private var t2: GLKTextureInfo?
 
+    private var textureInfo: GLKTextureInfo!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -34,15 +40,18 @@ class ViewController: UIViewController, GLKViewDelegate {
         aGLKView.drawableDepthFormat = .format16
         aGLKView.enableSetNeedsDisplay = true
         aGLKView.drawableColorFormat = .RGBA8888;  //颜色缓冲区格式
+        aGLKView.drawableMultisample = .multisample4X
+        
 
         self.view.addSubview(aGLKView)
         
         EAGLContext.setCurrent(context)
-        prepareTriangles()
-        prepareTexture()
+//        prepareTriangles()
+//        prepareTexture()
+        prepareLines()
 
-        var maxUnit: GLint = 0
-        glGetIntegerv(GLenum(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS), &maxUnit)
+//        var maxUnit: GLint = 0
+//        glGetIntegerv(GLenum(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS), &maxUnit)
 
     }
 
@@ -52,10 +61,11 @@ class ViewController: UIViewController, GLKViewDelegate {
     }
     
     public func glkView(_ view: GLKView, drawIn rect: CGRect) {
+        
+        
         glClearColor(0.2, 0.2, 0.5, 1.0);
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
         
-
         glEnableVertexAttribArray(GLuint(GLKVertexAttrib.position.rawValue));
 
 //        // t1
@@ -64,12 +74,19 @@ class ViewController: UIViewController, GLKViewDelegate {
         mEffect.constantColor = GLKVector4(v: (1.0, 0.0 ,0.0, 1.0))
 //        self.mEffect.texture2d0.name = (t1?.name)!
         mEffect.prepareToDraw()
-        glLineWidth(3)
-        glDrawArrays(GLenum(GL_LINES), 0, 6);
-        
+        glLineWidth(2)
+        glDrawArrays(GLenum(GL_LINE_STRIP), 0, 2);
+
+        mEffect.useConstantColor = GLboolean(GL_TRUE)
         mEffect.constantColor = GLKVector4(v: (1.0, 1.0 ,0.0, 1.0))
         mEffect.prepareToDraw()
-        glDrawArrays(GLenum(GL_TRIANGLES), 0, 3);
+        glPointSize(40)
+        glDrawArrays(GLenum(GL_POINTS), 0, 3);
+
+        
+//        mEffect.constantColor = GLKVector4(v: (1.0, 1.0 ,0.0, 1.0))
+//        mEffect.prepareToDraw()
+//        glDrawArrays(GLenum(GL_TRIANGLES), 0, 3);
 //
 //        // t2
 //        mEffect.useConstantColor = GLboolean(GL_FALSE)
@@ -78,9 +95,59 @@ class ViewController: UIViewController, GLKViewDelegate {
 //        mEffect.prepareToDraw()
 //        glDrawArrays(GLenum(GL_TRIANGLES), 0, 6);
 
+        
+        
+        
         glDisableVertexAttribArray(GLuint(GLKVertexAttrib.position.rawValue));
 
         
+    }
+    
+    private func prepareLines() {
+        do {
+            try textureInfo = GLKTextureLoader.texture(withContentsOfFile: "points.vsh", options: nil)
+        } catch {
+            
+        }
+        
+            
+        
+        var positions = [Float]()
+        
+        var i = Float(-1.0)
+        while i < 1 {
+            positions.append(i)
+            positions.append(Float(sin(Double(i) * Double.pi)))
+            i += 0.01
+        }
+        
+        
+        let floatSize = MemoryLayout<Float>.size
+
+        //        var vertexBuffer: GLuint = 0
+        // 生成一个缓存标识符,0值表示没有缓存
+        glGenBuffers(1, &lineVertexBuffer);
+        // glBindBuffer第一个参数说明绑定哪一种类型的缓存。GLES2.0版本只支持两种类型 GL_ARRAY_BUFFER\GL_ELEMENT_ARRAY_BUFFER。
+        // GL_ARRAY_BUFFER类型用于指定一个顶点属性数组。
+        glBindBuffer(GLenum(GL_ARRAY_BUFFER), lineVertexBuffer);
+        glBufferData(GLenum(GL_ARRAY_BUFFER), floatSize * positions.count, positions, GLenum(GL_STATIC_DRAW));
+        
+        // 点
+        glEnableVertexAttribArray(GLuint(GLKVertexAttrib.position.rawValue))
+        //        _ indx: GLuint,
+        //        _ size: GLint,
+        //        _ type: GLenum,
+        //        _ normalized: GLboolean,
+        //        _ stride: GLsizei,
+        //        _ ptr: UnsafeRawPointer!
+        glVertexAttribPointer(GLuint(GLKVertexAttrib.position.rawValue),
+                              2,
+                              GLenum(GL_FLOAT),
+                              GLboolean(GL_TRUE),
+                              GLsizei(floatSize * 2),
+                              nil)
+        
+
     }
     
     
@@ -113,12 +180,23 @@ class ViewController: UIViewController, GLKViewDelegate {
 //        _ normalized: GLboolean,
 //        _ stride: GLsizei, 
 //        _ ptr: UnsafeRawPointer!
-        glVertexAttribPointer(GLuint(GLKVertexAttrib.position.rawValue), 3, GLenum(GL_FLOAT), GLboolean(GL_FALSE), GLsizei(floatSize * 5), nil)
+        glVertexAttribPointer(GLuint(GLKVertexAttrib.position.rawValue),
+                              3,
+                              GLenum(GL_FLOAT),
+                              GLboolean(GL_FALSE),
+                              GLsizei(floatSize * 5),
+                              nil)
 
         // 文理
         glEnableVertexAttribArray(GLuint(GLKVertexAttrib.texCoord0.rawValue));
+        
         let ptr = UnsafeRawPointer(bitPattern: floatSize * 3)
-        glVertexAttribPointer(GLuint(GLKVertexAttrib.texCoord0.rawValue), 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), GLsizei(floatSize * 5), ptr);
+        glVertexAttribPointer(GLuint(GLKVertexAttrib.texCoord0.rawValue),
+                              2,
+                              GLenum(GL_FLOAT),
+                              GLboolean(GL_FALSE),
+                              GLsizei(floatSize * 5),
+                              ptr);
 
     }
     

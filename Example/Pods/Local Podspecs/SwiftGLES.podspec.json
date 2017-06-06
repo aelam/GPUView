@@ -19,6 +19,11 @@
     "ios": "8.0"
   },
   "source_files": "SwiftGLES/Classes/**/*",
+  "resource_bundles": {
+    "SwiftGLES": [
+      "SwiftGLES/Assets/**/*.{png,fsh,vsh}"
+    ]
+  },
   "dependencies": {
     "Charts": [
       "~> 3.0"
