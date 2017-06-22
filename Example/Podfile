@@ -1,15 +1,12 @@
 use_frameworks!
+platform :ios, '8.0'
+
 
 target 'SwiftGLES_Example' do
   pod 'SwiftGLES', :path => '../'
-  pod 'Charts', :git => 'http://ph.benemind.com/diffusion/CHART/chart.git'
+  #pod 'Charts' #, :git => 'http://ph.benemind.com/diffusion/CHART/chart.git'
 
   target 'SwiftGLES_Tests' do
     inherit! :search_paths
-
-    pod 'Quick', '~> 1.0.0'
-  pod 'Nimble', '~> 5.1.1'
-  pod 'FBSnapshotTestCase'
-  pod 'Nimble-Snapshots'
   end
 end

@@ -1,50 +1,21 @@
 PODS:
-  - Charts (3.0.1):
-    - Charts/Core (= 3.0.1)
-  - Charts/Core (3.0.1)
-  - FBSnapshotTestCase (2.1.4):
-    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
-  - FBSnapshotTestCase/Core (2.1.4)
-  - FBSnapshotTestCase/SwiftSupport (2.1.4):
-    - FBSnapshotTestCase/Core
-  - Nimble (5.1.1)
-  - Nimble-Snapshots (4.4.0):
-    - Nimble-Snapshots/Core (= 4.4.0)
-  - Nimble-Snapshots/Core (4.4.0):
-    - FBSnapshotTestCase (~> 2.0)
-    - Nimble
-    - Quick
-  - Quick (1.0.0)
+  - Charts (3.0.2):
+    - Charts/Core (= 3.0.2)
+  - Charts/Core (3.0.2)
   - SwiftGLES (0.1.0):
     - Charts (~> 3.0)
 
 DEPENDENCIES:
-  - Charts (from `http://ph.benemind.com/diffusion/CHART/chart.git`)
-  - FBSnapshotTestCase
-  - Nimble (~> 5.1.1)
-  - Nimble-Snapshots
-  - Quick (~> 1.0.0)
   - SwiftGLES (from `../`)
 
 EXTERNAL SOURCES:
-  Charts:
-    :git: http://ph.benemind.com/diffusion/CHART/chart.git
   SwiftGLES:
     :path: "../"
 
-CHECKOUT OPTIONS:
-  Charts:
-    :commit: 0fc077465242b3c6feb655cab94b5a0ba868fd4a
-    :git: http://ph.benemind.com/diffusion/CHART/chart.git
-
 SPEC CHECKSUMS:
-  Charts: 1752279006d8477d0cb57f9105bc121c0cbbd330
-  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
-  Nimble-Snapshots: e743439f26c2fa99d8f7e0d7c01c99bcb40aa6f2
-  Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
+  Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   SwiftGLES: f2d4316e9111b2abc181e2bd1fcbe6d9e58a50ba
 
-PODFILE CHECKSUM: 2417ea949ea669779299182a564c81081ba7fd4a
+PODFILE CHECKSUM: 7bdf615a75064a9a764d1b0ce7aeac8ea3f1bea7
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.1.1

@@ -64,24 +64,24 @@ class ViewController: UIViewController, GLKViewDelegate {
         
         
         glClearColor(0.2, 0.2, 0.5, 1.0);
-        glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
         glEnableVertexAttribArray(GLuint(GLKVertexAttrib.position.rawValue));
 
 //        // t1
 //        mEffect.texture2d0.enabled = GLboolean(GL_TRUE);
-        mEffect.useConstantColor = GLboolean(GL_TRUE)
+        mEffect.useConstantColor = GL_TRUE
         mEffect.constantColor = GLKVector4(v: (1.0, 0.0 ,0.0, 1.0))
 //        self.mEffect.texture2d0.name = (t1?.name)!
         mEffect.prepareToDraw()
         glLineWidth(2)
-        glDrawArrays(GLenum(GL_LINE_STRIP), 0, 2);
+        glDrawArrays(GL_LINE_STRIP, 0, 2);
 
-        mEffect.useConstantColor = GLboolean(GL_TRUE)
+        mEffect.useConstantColor = GL_TRUE
         mEffect.constantColor = GLKVector4(v: (1.0, 1.0 ,0.0, 1.0))
         mEffect.prepareToDraw()
         glPointSize(40)
-        glDrawArrays(GLenum(GL_POINTS), 0, 3);
+        glDrawArrays(GL_POINTS, 0, 3);
 
         
 //        mEffect.constantColor = GLKVector4(v: (1.0, 1.0 ,0.0, 1.0))
@@ -89,7 +89,7 @@ class ViewController: UIViewController, GLKViewDelegate {
 //        glDrawArrays(GLenum(GL_TRIANGLES), 0, 3);
 //
 //        // t2
-//        mEffect.useConstantColor = GLboolean(GL_FALSE)
+//        mEffect.useConstantColor = GL_FALSE
 ////        mEffect.constantColor = GLKVector4(v: (1.0, 0.0 ,1.0, 1.0))
 //        self.mEffect.texture2d0.name = (t2?.name)!
 //        mEffect.prepareToDraw()
@@ -129,8 +129,8 @@ class ViewController: UIViewController, GLKViewDelegate {
         glGenBuffers(1, &lineVertexBuffer);
         // glBindBuffer第一个参数说明绑定哪一种类型的缓存。GLES2.0版本只支持两种类型 GL_ARRAY_BUFFER\GL_ELEMENT_ARRAY_BUFFER。
         // GL_ARRAY_BUFFER类型用于指定一个顶点属性数组。
-        glBindBuffer(GLenum(GL_ARRAY_BUFFER), lineVertexBuffer);
-        glBufferData(GLenum(GL_ARRAY_BUFFER), floatSize * positions.count, positions, GLenum(GL_STATIC_DRAW));
+        glBindBuffer(GL_ARRAY_BUFFER, lineVertexBuffer);
+        glBufferData(GL_ARRAY_BUFFER, floatSize * positions.count, positions, GL_STATIC_DRAW);
         
         // 点
         glEnableVertexAttribArray(GLuint(GLKVertexAttrib.position.rawValue))
@@ -142,8 +142,8 @@ class ViewController: UIViewController, GLKViewDelegate {
         //        _ ptr: UnsafeRawPointer!
         glVertexAttribPointer(GLuint(GLKVertexAttrib.position.rawValue),
                               2,
-                              GLenum(GL_FLOAT),
-                              GLboolean(GL_TRUE),
+                              GL_FLOAT,
+                              GL_TRUE,
                               GLsizei(floatSize * 2),
                               nil)
         
@@ -169,8 +169,8 @@ class ViewController: UIViewController, GLKViewDelegate {
         glGenBuffers(1, &vertexBuffer);
         // glBindBuffer第一个参数说明绑定哪一种类型的缓存。GLES2.0版本只支持两种类型 GL_ARRAY_BUFFER\GL_ELEMENT_ARRAY_BUFFER。
         // GL_ARRAY_BUFFER类型用于指定一个顶点属性数组。
-        glBindBuffer(GLenum(GL_ARRAY_BUFFER), vertexBuffer);
-        glBufferData(GLenum(GL_ARRAY_BUFFER), floatSize * position.count, position, GLenum(GL_STATIC_DRAW));
+        glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+        glBufferData(GL_ARRAY_BUFFER, floatSize * position.count, position, GL_STATIC_DRAW);
 
         // 点
         glEnableVertexAttribArray(GLuint(GLKVertexAttrib.position.rawValue))
@@ -182,8 +182,8 @@ class ViewController: UIViewController, GLKViewDelegate {
 //        _ ptr: UnsafeRawPointer!
         glVertexAttribPointer(GLuint(GLKVertexAttrib.position.rawValue),
                               3,
-                              GLenum(GL_FLOAT),
-                              GLboolean(GL_FALSE),
+                              GL_FLOAT,
+                              GL_FALSE,
                               GLsizei(floatSize * 5),
                               nil)
 
@@ -193,8 +193,8 @@ class ViewController: UIViewController, GLKViewDelegate {
         let ptr = UnsafeRawPointer(bitPattern: floatSize * 3)
         glVertexAttribPointer(GLuint(GLKVertexAttrib.texCoord0.rawValue),
                               2,
-                              GLenum(GL_FLOAT),
-                              GLboolean(GL_FALSE),
+                              GL_FLOAT,
+                              GL_FALSE,
                               GLsizei(floatSize * 5),
                               ptr);
 
@@ -224,8 +224,8 @@ class ViewController: UIViewController, GLKViewDelegate {
         t2 = tex2
 
 
-        glEnable(GLenum(GL_BLEND));
-        glBlendFunc(GLenum(GL_SRC_ALPHA), GLenum(GL_ONE_MINUS_SRC_ALPHA));
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         
 
     }
