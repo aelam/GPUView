@@ -39,12 +39,12 @@
 
 #endif
 
-open class Shader {
-    public typealias GLprogram = GLuint
+open class GLProgramObject {
+    public typealias GLProgramId = GLuint
     public typealias GLattrib = GLint
     public typealias GLuniform = GLint
 
-    var id: GLprogram = 0
+    var id: GLProgramId = 0
 
     public init() {
 
@@ -54,7 +54,7 @@ open class Shader {
         _ = compile(vertexSource, fragmentSource)
     }
 
-    public init(vertexSource: String, fragmentSource: String, bindAttibutes: (GLprogram) -> ()) {
+    public init(vertexSource: String, fragmentSource: String, bindAttibutes: (GLProgramId) -> ()) {
         _ = compile(vertexSource, fragmentSource, bindAttibutes)
     }
 
@@ -62,7 +62,7 @@ open class Shader {
         _ = load(vertexFile, fragmentFile)
     }
 
-    public init(vertexFile: String, fragmentFile: String, bindAttibutes: (GLprogram) -> ()) {
+    public init(vertexFile: String, fragmentFile: String, bindAttibutes: (GLProgramId) -> ()) {
         _ = load(vertexFile, fragmentFile, bindAttibutes)
     }
 
@@ -70,13 +70,14 @@ open class Shader {
         glDeleteProgram(id)
     }
 
+    // MARK: - - Compile
     /// @return true on success
     open func compile(_ vertexSource: String, _ fragmentSource: String) -> Bool {
         glDeleteProgram(id)
         id = glCreateProgram();
 
-        let vertexShader = Shader.compile(GL_VERTEX_SHADER, vertexSource)
-        let fragmentShader = Shader.compile(GL_FRAGMENT_SHADER, fragmentSource)
+        let vertexShader = GLShaderObject.compile(GL_VERTEX_SHADER, vertexSource)
+        let fragmentShader = GLShaderObject.compile(GL_FRAGMENT_SHADER, fragmentSource)
 
         // Attach the shaders to our id
         glAttachShader(id, vertexShader)
@@ -88,16 +89,16 @@ open class Shader {
 
         glLinkProgram(id)
 
-        return Shader.verify(id)
+        return GLProgramObject.verify(id)
     }
 
     /// @return true on success
-    open func compile(_ vertexSource: String, _ fragmentSource: String, _ bindAttibutes: (GLprogram) -> ()) -> Bool {
+    open func compile(_ vertexSource: String, _ fragmentSource: String, _ bindAttibutes: (GLProgramId) -> ()) -> Bool {
         glDeleteProgram(id)
         id = glCreateProgram();
 
-        let vertexShader = Shader.compile(GL_VERTEX_SHADER, vertexSource)
-        let fragmentShader = Shader.compile(GL_FRAGMENT_SHADER, fragmentSource)
+        let vertexShader = GLShaderObject.compile(GL_VERTEX_SHADER, vertexSource)
+        let fragmentShader = GLShaderObject.compile(GL_FRAGMENT_SHADER, fragmentSource)
 
         // Call the external function to bind all of the default shader attributes
         bindAttibutes(id)
@@ -112,9 +113,10 @@ open class Shader {
 
         glLinkProgram(id)
 
-        return Shader.verify(id)
+        return GLProgramObject.verify(id)
     }
 
+    // MARK: - - Load
     /// @return true on success
     open func load(_ shader: String) -> Bool {
         if let vertexSource = try? String(contentsOfFile: shader + ".vsh", encoding: String.Encoding.ascii) {
@@ -138,7 +140,7 @@ open class Shader {
     }
 
     /// @return true on success
-    open func load(_ vertexFile: String, _ fragmentFile: String, _ bindAttibutes: (GLprogram) -> ()) -> Bool {
+    open func load(_ vertexFile: String, _ fragmentFile: String, _ bindAttibutes: (GLProgramId) -> ()) -> Bool {
         if let vertexSource = try? String(contentsOfFile: vertexFile, encoding: String.Encoding.ascii) {
             if let fragmentSource = try? String(contentsOfFile: fragmentFile, encoding: String.Encoding.ascii) {
                 return self.compile(vertexSource, fragmentSource, bindAttibutes)
@@ -159,6 +161,8 @@ open class Shader {
     open func uniform(_ name: String) -> GLuniform {
         return glGetUniformLocation(id, UnsafePointer<CChar>(name.cString(using: String.Encoding.ascii)!))
     }
+    
+    // MARK: - - Bind
     // Bind Uniforms using Uniform Location
     open func bind(_ uniform: GLuniform, _ x: Float) { glProgramUniform1f(id, uniform, x) }
     open func bind(_ uniform: GLuniform, _ x: Float, _ y: Float) { glProgramUniform2f(id, uniform, x, y) }
@@ -193,40 +197,8 @@ open class Shader {
         glBindTexture(GL_TEXTURE_2D, texture.id)
     }
 
-    fileprivate class func ptr <T> (_ ptr: UnsafePointer<T>) -> UnsafePointer<T> { return ptr }
-
-    fileprivate class func compile(_ type: GLenum, _ source: String) -> GLprogram {
-        if let csource: [GLchar] = source.cString(using: String.Encoding.ascii) {
-            let cptr = ptr(csource)
-
-            let shader = glCreateShader(type)
-            glShaderSource(shader, 1, [cptr], nil)
-            glCompileShader(shader)
-
-            var logLength: GLint = 0
-            glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
-            if logLength > 0 {
-                let log = malloc(Int(logLength)).assumingMemoryBound(to: CChar.self)
-                glGetShaderInfoLog(shader, logLength, &logLength, log)
-                print("Shader compile log: \(String(describing: log))")
-                free(log)
-            }
-
-            var status: GLint = 0
-            glGetShaderiv(shader, GLenum(GL_COMPILE_STATUS), &status)
-            if status == GLint(GL_FALSE) {
-                print("Failed to compile shader: \(csource)")
-                return 0
-            }
-
-            return shader
-        }
-
-        return 0
-    }
-
-    fileprivate class func verify(_ program: GLprogram) -> Bool {
-//        #if DEBUG
+    fileprivate class func verify(_ program: GLProgramId) -> Bool {
+#if DEBUG
         // Assert that the program was successfully linked
         var logLength: GLint = 0
         glGetProgramiv(program, GLenum(GL_INFO_LOG_LENGTH), &logLength)
@@ -237,7 +209,7 @@ open class Shader {
             print("Program link log:\n\(String(describing: log))")
             free(log)
         }
-//        #endif
+#endif
 
         var status: GLint = 0
         glGetProgramiv(program, GLenum(GL_LINK_STATUS), &status)

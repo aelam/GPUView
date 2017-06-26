@@ -44,23 +44,23 @@ extension Float: GLType {
     public static var glSize: GLint { get { return 1 } }
 }
 
-extension Vec2: GLType {
-    public static var glType: GLenum { get { return GL_FLOAT } }
-    public static var glNormalized: GLboolean { get { return GL_FALSE } }
-    public static var glSize: GLint { get { return 2 } }
-}
-
-extension Vec3: GLType {
-    public static var glType: GLenum { get { return GL_FLOAT } }
-    public static var glNormalized: GLboolean { get { return GL_FALSE } }
-    public static var glSize: GLint { get { return 3 } }
-}
-
-extension Vec4: GLType {
-    public static var glType: GLenum { get { return GL_FLOAT } }
-    public static var glNormalized: GLboolean { get { return GL_FALSE } }
-    public static var glSize: GLint { get { return 4 } }
-}
+//extension Vec2: GLType {
+//    public static var glType: GLenum { get { return GL_FLOAT } }
+//    public static var glNormalized: GLboolean { get { return GL_FALSE } }
+//    public static var glSize: GLint { get { return 2 } }
+//}
+//
+//extension Vec3: GLType {
+//    public static var glType: GLenum { get { return GL_FLOAT } }
+//    public static var glNormalized: GLboolean { get { return GL_FALSE } }
+//    public static var glSize: GLint { get { return 3 } }
+//}
+//
+//extension Vec4: GLType {
+//    public static var glType: GLenum { get { return GL_FLOAT } }
+//    public static var glNormalized: GLboolean { get { return GL_FALSE } }
+//    public static var glSize: GLint { get { return 4 } }
+//}
 
 public extension VAO {
     public func bind <T: GLType> (attribute: GLuint, type: T.Type, vbo: VBO, offset: GLsizeiptr) {

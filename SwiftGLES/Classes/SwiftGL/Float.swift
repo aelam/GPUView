@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Scott Bennett. All rights reserved.
 //
 
-import Darwin
+//import Darwin
 
-public let Pi = Float(M_PI)
+public let Pi = Float(Double.pi)
 
 public func radians(_ degrees: Float) -> Float { return degrees * Pi / 180 }
 public func degrees(_ radians: Float) -> Float { return radians * 180 / Pi }
